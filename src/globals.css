@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('./assets/fonts/PretendardVariable.woff2') format('woff2');
+}
+
+:root {
+  /* 색상 */
+  --background: #ffffff;
+
+  /* 폰트 */
+  --font-family: 'Pretendard';
+}
+
+body {
+  background: var(--background);
+  font-family: var(--font-family);
+}
