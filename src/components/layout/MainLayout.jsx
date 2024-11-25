@@ -1,9 +1,11 @@
 import { Outlet } from 'react-router-dom';
+// import Header form ~~
 const MainLayout = () => {
   return (
     <div>
-      MainLayout
+      <header></header>
       <Outlet />
+      <footer></footer>
     </div>
   );
 };
