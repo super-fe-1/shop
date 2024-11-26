@@ -9,7 +9,15 @@
 
 :root {
   /* 색상 */
-  --background: #ffffff;
+  --background: #ffffff; /* 기본 배경색 */
+  --background-secondary: #f7f8fa; /* 섹션 배경색 */
+  --primary: #302e81; /* 주제색 */
+  --text-primary: #333333; /* 기본 텍스트 색상 */
+  --text-secondary: #555555; /* 보조 텍스트 색상 */
+  --accent: #9897c0; /* 강조색 (버튼, 링크 등) */
+  --accent-hover: #6463a1; /* 강조색 호버 상태 (버튼, 링크 등)*/
+  --success: #3e6f69; /* 성공 상태 색상 */
+  --error: #cf383f; /* 에러 상태 색상 */
 
   /* 폰트 */
   --font-family: 'Pretendard';
@@ -17,5 +25,6 @@
 
 body {
   background: var(--background);
+  color: var(--text-primary);
   font-family: var(--font-family);
 }
