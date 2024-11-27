@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import FormInput from '../components/FormInput';
 import styles from '../styles/pages/ProfilePage.module.css';
-import profilePlaceholder from '../assets/images/placeholder-profile.png';
+import profilePlaceholder from '../assets/images/placeholder-profile.jpeg';
 
 const ProfilePage = () => {
   const isLoggedIn = true;
