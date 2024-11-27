@@ -1,0 +1,27 @@
+.authpage_container {
+  @apply flex items-center justify-center min-h-screen bg-gray-100;
+}
+
+.auth_form {
+  @apply bg-white p-6 rounded-lg shadow-md w-96;
+}
+
+.auth_heading {
+  @apply text-center font-bold text-xl mb-4;
+}
+
+.auth_error {
+  @apply text-red-500 mb-2;
+}
+
+.auth_submit_button {
+  @apply w-full mt-2 bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600;
+}
+
+.auth_helper_text {
+  @apply mt-4 text-center text-sm text-gray-600;
+}
+
+.link_signup_button {
+  @apply text-blue-500 underline hover:text-blue-700;
+}
