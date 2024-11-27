@@ -17,6 +17,15 @@ module.exports = {
       fontFamily: {
         pretendard: ['Pretendard', 'sans-serif'], // Pretendard 폰트
       },
+      animation: {
+        'fade-in': 'fadeIn .3s ease-in',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
+      },
     },
   },
   plugins: [],

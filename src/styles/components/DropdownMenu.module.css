@@ -1,0 +1,11 @@
+.dropdown {
+  @apply absolute w-24 rounded-lg shadow bg-background-secondary;
+  @apply right-0;
+  @apply flex flex-col items-center;
+}
+
+.dropdown__item {
+  @apply p-1;
+  @apply text-sm;
+  @apply animate-fade-in;
+}
