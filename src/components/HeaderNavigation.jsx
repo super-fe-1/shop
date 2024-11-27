@@ -4,9 +4,9 @@ import styles from '../styles/components/HeaderNavigation.module.css';
 const HeaderNavigation = ({ links }) => {
   return (
     <ul className={styles.list}>
-      {Object.values(links).map((link) => {
+      {Object.values(links).map((link, i) => {
         return (
-          <li>
+          <li key={i}>
             <Link to={link.link}>{link.name.toUpperCase()}</Link>
           </li>
         );
