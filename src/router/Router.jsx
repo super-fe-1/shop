@@ -6,6 +6,7 @@ import HomePage from '../pages/HomePage';
 import AuthPage from '../pages/AuthPage';
 import DetailPage from '../pages/DetailPage';
 import ProfilePage from '../pages/ProfilePage';
+import RegistrationPage from '../pages/RegistrationPage';
 import NotFoundPage from '../pages/NotFoundPage';
 
 const AppRouter = () => {
@@ -20,6 +21,7 @@ const AppRouter = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/detail/:id" element={<DetailPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/registration" element={<RegistrationPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
