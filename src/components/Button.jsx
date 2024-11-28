@@ -1,9 +1,11 @@
 import React from 'react';
-import styles from '../assets/styles/Button.module.css';
 
 const Button = ({ text, type, className }) => {
   return (
-    <button type={type} className={`${styles.button} ${className}`}>
+    <button
+      type={type}
+      className={`bg-blue-500 text-white py-2 px-4 rounded ${className}`}
+    >
       {text}
     </button>
   );
