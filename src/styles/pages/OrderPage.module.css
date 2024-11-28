@@ -1,0 +1,11 @@
+.container{
+  @apply max-w-7xl mx-auto p-6 flex flex-col md:flex-row gap-8
+}
+
+.checkout{
+  @apply w-1/2 p-4
+}
+
+.cart{
+  @apply w-1/2 p-4
+}

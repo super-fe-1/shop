@@ -7,6 +7,7 @@ import AuthPage from '../pages/AuthPage';
 import DetailPage from '../pages/DetailPage';
 import ProfilePage from '../pages/ProfilePage';
 import NotFoundPage from '../pages/NotFoundPage';
+import OrderPage from '../pages/OrderPage';
 
 const AppRouter = () => {
   return (
@@ -21,6 +22,7 @@ const AppRouter = () => {
           <Route path="/detail/:id" element={<DetailPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/order" element={<OrderPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

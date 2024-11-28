@@ -1,0 +1,57 @@
+.checkout__container {
+  @apply max-w-lg mx-auto p-5
+}
+
+.checkout__title {
+  @apply text-2xl mb-4 font-bold
+}
+
+.checkout__form {
+ @apply flex flex-col gap-4
+}
+
+
+.checkout__group input {
+  @apply w-full p-2 border border-gray-300 rounded
+}
+
+.checkout__date{
+  @apply flex gap-4
+}
+
+.checkout__expiration {
+  @apply w-2/3
+}
+
+.checkout__date input{
+  @apply w-full p-2 border border-gray-300 rounded-md
+}
+
+.checkout__cvc {
+  @apply w-1/3
+}
+
+.checkout__address{
+  @apply flex gap-4
+}
+
+.checkout__address input{
+  @apply w-full p-2 border border-gray-300 rounded-md
+}
+
+.checkout__city{
+  @apply w-1/3
+}
+
+.checkout__state{
+  @apply w-1/3
+}
+
+.checkout__postal{
+  @apply w-1/3
+}
+
+.checkout__submitBtn {
+  @apply bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700
+}
+

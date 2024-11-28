@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 
 
 const List = () => {
@@ -32,6 +33,7 @@ const List = () => {
         <img src="image5.jpg" alt="Image 5" className="w-full h-auto"/>
         <img src="image6.jpg" alt="Image 6" className="w-full h-auto"/>
       </div>
+      <button><Link to={"/order"} />결제하기</button>
     </>
   );
 };
