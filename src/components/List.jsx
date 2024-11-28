@@ -1,36 +1,41 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import styles from "../styles.component.List.module.css"
 
+const List = () => { d
 
-const List = () => {
   return (
     <>
-      <div className="py-20 px-40 border-[3px] rounded-[5px] flex flex-col justify-center items-center w-full max-w-6xl space-y-4 mx-auto">
-        <p className="text-3xl font-semibold">New Arrivals</p>
-        <p className="text-center text-gray-600">
+      <div className={styles.list__container}>
+        <p className={styles.list_title}>New Arrivals</p>
+        <p className={styles.list__description}>
           Thoughtfully designed objects for the workspace, home, and travel
         </p>
       </div>
-      <div className="flex justify-between items-center cursor-pointer px-4 py-2">
-        <div className="flex">Sort</div>
-        <div className="flex gap-x-4">
+      <div className={styles.list__controls}>
+        <div className={styles.list__sort}>Sort</div>
+        <div className={styles.list__others}>
           <div>Category</div>
           <div>Brand</div>
           <div>Color</div>
           <div>Sizes</div>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-4 px-4 py-2">
-        <div>
-        <img src="image1.jpg" alt="Image 1" className="w-full h-auto"/>
-          <div className="flex justify-between">
-            <p>이름</p>
-            <p>가격</p>
+      <div className={styles.list__grid}>
+        {[1, 2, 3, 4, 5, 6].map((id) => (
+          <div key={id}>
+            {// img 들어오면 구현 예정}
+            {/*<img src={`image${id}.jpg`} alt={`Image ${id}`} className="w-full h-auto" />*/}}
+            <div className={styles.list__buttons}>
+              <p
+                className={styles.list__link}
+              >
+                <Link to ="/detail/:id">이름 {id}</Link>
+              </p>
+              <p>가격</p>
+            </div>
           </div>
-        </div>
-        <img src="image2.jpg" alt="Image 2" className="w-full h-auto"/>
-        <img src="image3.jpg" alt="Image 3" className="w-full h-auto"/>
-        <img src="image4.jpg" alt="Image 4" className="w-full h-auto"/>
-        <img src="image5.jpg" alt="Image 5" className="w-full h-auto"/>
-        <img src="image6.jpg" alt="Image 6" className="w-full h-auto"/>
+        ))}
       </div>
     </>
   );
