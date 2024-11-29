@@ -8,6 +8,7 @@ import DetailPage from '../pages/DetailPage';
 import ProfilePage from '../pages/ProfilePage';
 import RegistrationPage from '../pages/RegistrationPage';
 import NotFoundPage from '../pages/NotFoundPage';
+import OrderPage from '../pages/OrderPage';
 
 const AppRouter = () => {
   return (
@@ -23,6 +24,7 @@ const AppRouter = () => {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/registration" element={<RegistrationPage />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/order" element={<OrderPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
