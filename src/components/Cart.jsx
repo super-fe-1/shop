@@ -29,7 +29,7 @@ const Cart = () => {
   //이미지는 받으면 구현 예정
   return (
     <div className={styles.cart__container}>
-      <h1 className={styles.cart__title}>Amount due</h1>
+      <h1 className={styles.cart__title}>결제 금액</h1>
       <div className={styles.cart__items}>
         {cartItems.map((item) => (
           <div key={item.id} className={styles.cart__item}>
@@ -56,20 +56,20 @@ const Cart = () => {
 
       <div className={styles.cart__summary}>
         <div className={styles.cart__costs}>
-          <p>Subtotal</p>
+          <p>합계(세금 및 배송비 제외)</p>
           <p>${subtotal.toFixed(2)}</p>
         </div>
         <div className={styles.cart__costs}>
-          <p>Shipping Fee</p>
+          <p>배송비</p>
           <p>${shippingFee.toFixed(2)}</p>
         </div>
         <div className={styles.cart__costs}>
-          <p>Taxes</p>
+          <p>세금</p>
           <p>${tax.toFixed(2)}</p>
         </div>
         <hr className={styles.cart__hr} />
         <div className={styles.cart__total}>
-          <p>Total</p>
+          <p>총 상품 금액</p>
           <p>${total.toFixed(2)}</p>
         </div>
       </div>
