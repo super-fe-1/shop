@@ -1,0 +1,38 @@
+.product{
+    @apply max-w-7xl mx-auto p-6 flex flex-col md:flex-row gap-8
+}
+
+.product__image{
+    @apply flex-1
+}
+.product__image_img{
+    @apply w-full h-auto rounded-lg shadow-lg
+}
+.product__details{
+    @apply flex-1 flex flex-col gap-4
+}
+.product__details_name{
+    @apply text-3xl font-bold
+}
+.product__details_price{
+    @apply text-2xl font-semibold text-green-600
+}
+
+.product__details_description{
+    @apply text-gray-700
+}
+
+.product__details_button {
+  @apply mt-4 px-6 py-2 bg-[#302e81] text-white rounded-lg shadow transition-all;
+}
+
+.product__details_button:hover {
+  @apply bg-[#2563eb];
+}
+
+
+
+
+
+
+
