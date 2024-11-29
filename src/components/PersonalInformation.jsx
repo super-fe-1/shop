@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import styles from "../styles/components/Checkout.module.css";
+import styles from "../styles/components/PersonalInformation.css";
 import {Link} from "react-router-dom";
 
-const Checkout = () => {
+const PersonalInformation = () => {
   const [formData, setFormData] = useState({
     emailAddress: "",
     cardNumber: "",
@@ -25,7 +25,6 @@ const Checkout = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Payment successful!", formData);
     alert("Payment successful!");
   };
 
@@ -136,4 +135,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default PersonalInformation;

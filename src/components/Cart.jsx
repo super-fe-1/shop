@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styles from "../styles/components/Cart.module.css";
 
 const Cart = () => {
-  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([
-    { id: 1, name: "Product 1", price: 100, quantity: 1, option: "Size: M" },
-    { id: 2, name: "Product 2", price: 50, quantity: 2, option: "Color: Red" },
+    { id: 1, name: "product 1", price: 100, quantity: 1, option: {size: "m"} },
+    { id: 2, name: "product 2", price: 50, quantity: 2, option: {color: "red"} },
   ]);
 
   const updateQuantity = (id, increment) => {
@@ -37,7 +35,9 @@ const Cart = () => {
           <div key={item.id} className={styles.cart__item}>
             <div>
               <p>{item.name}</p>
-              <p>{item.option}</p>
+              {Object.entries(item.option).map(
+                ([key, value]) => `${key}: ${value}`
+              )}
             </div>
             <div className={styles.cart__controls}>
               <button
