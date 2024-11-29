@@ -10,7 +10,7 @@
     @apply text-center text-gray-600
 }
 
-.list__controls{
+.list__filters{
     @apply flex justify-between items-center cursor-pointer px-4 py-2
 }
 
@@ -18,11 +18,11 @@
     @apply flex
 }
 
-.list__others{
-    @apply flex gap-x-4
+.list__menu{
+    @apply flex gap-x-4 list-none
 }
 
-.list__grid{
+.list__items{
     @apply grid grid-cols-3 gap-4 px-4 py-2
 }
 

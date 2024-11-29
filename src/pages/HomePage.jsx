@@ -1,9 +1,9 @@
-import List from '../components/List';
+import ShopList from '../components/ShopList';
 
 const HomePage = () => {
   return (
     <>
-      <List />
+      <ShopList />
     </>
   );
 };

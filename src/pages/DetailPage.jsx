@@ -4,9 +4,9 @@ import styles from "../styles/components/DetailPage.module.css"
 
 const DetailPage = () => {
   const { id } = useParams();
-// 일단 목업데이터로 생성 
+// 일단 목업데이터로 생성
   const mockData = {
-    1: {
+    "1": {
       name: "Product 1",
       description: "This is a great product that you will love.",
       price: "$100",
