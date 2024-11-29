@@ -1,0 +1,35 @@
+.list__container{
+    @apply py-20 px-40 border-[3px] rounded-[5px] flex flex-col justify-center items-center w-full max-w-6xl space-y-4 mx-auto
+}
+
+.list__title{
+    @apply text-3xl font-semibold
+}
+
+.list__description{
+    @apply text-center text-gray-600
+}
+
+.list__filters{
+    @apply flex justify-between items-center cursor-pointer px-4 py-2
+}
+
+.list__sort{
+    @apply flex
+}
+
+.list__menu{
+    @apply flex gap-x-4 list-none
+}
+
+.list__items{
+    @apply grid grid-cols-3 gap-4 px-4 py-2
+}
+
+.list__buttons{
+    @apply flex justify-between mt-2
+}
+
+.list__link{
+    @apply text-blue-500 underline cursor-pointer
+}
