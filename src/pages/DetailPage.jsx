@@ -36,7 +36,7 @@ const DetailPage = () => {
         <p className={styles.product__details_price}>{product.price}</p>
         <p className={styles.product__details_description}>{product.description}</p>
         <button className={styles.product__details_button}>
-          Add to bag
+          장바구니에 추가
         </button>
       </div>
     </div>

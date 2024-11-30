@@ -9,8 +9,6 @@ const PersonalInformation = () => {
     expiryDate: "",
     cvc: "",
     address: "",
-    city: "",
-    state: "",
     postalCode: "",
     sameAsShipping: false,
   });
@@ -29,11 +27,11 @@ const PersonalInformation = () => {
   };
 
   return (
-    <div className={styles.checkout__container}>
-      <form className={styles.checkout__form} onSubmit={handleSubmit}>
-        <h4 className={styles.checkout__title}>Contact information</h4>
-        <div className={styles.checkout__group}>
-          <label>Email address</label>
+    <div className={styles.information__container}>
+      <form className={styles.information__form} onSubmit={handleSubmit}>
+        <h4 className={styles.information__title}>연락 정보</h4>
+        <div className={styles.information__group}>
+          <label>이메일</label>
           <input
             type="text"
             name="name"
@@ -42,9 +40,9 @@ const PersonalInformation = () => {
             required
           />
         </div>
-        <h4 className={styles.checkout__title}>Payment details</h4>
-        <div className={styles.checkout__group}>
-          <label>Card number</label>
+        <h4 className={styles.information__title}>결제 정보</h4>
+        <div className={styles.information__group}>
+          <label>카드 번호</label>
           <input
             type="text"
             name="cardNumber"
@@ -53,9 +51,9 @@ const PersonalInformation = () => {
             required
           />
         </div>
-        <div className={styles.checkout__date}>
-          <div className={styles.checkout__expiration}>
-            <label>Expiration date (MM/YY)</label>
+        <div className={styles.information__date}>
+          <div className={styles.information__expiration}>
+            <label>유효기간 (MM/YY)</label>
             <input
               type="text"
               name="expiryDate"
@@ -64,7 +62,7 @@ const PersonalInformation = () => {
               required
             />
           </div>
-          <div className={styles.checkout__cvc}>
+          <div>
             <label>CVC</label>
             <input
               type="text"
@@ -75,9 +73,9 @@ const PersonalInformation = () => {
             />
           </div>
         </div>
-        <h4 className={styles.checkout__title}>Shipping address</h4>
-        <div className={styles.checkout__group}>
-          <label>Address</label>
+        <h4 className={styles.information__title}>배송 주소</h4>
+        <div className={styles.information__group}>
+          <label>주소</label>
           <input
             type="text"
             name="address"
@@ -86,37 +84,16 @@ const PersonalInformation = () => {
             required
           />
         </div>
-        <div className={styles.checkout__address}>
-          <div className={styles.checkout__city}>
-            <label>City</label>
-            <input
-              type="text"
-              name="city"
-              required
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles.checkout__state}>
-            <label>State/Province</label>
-            <input
-              type="text"
-              name="state"
-              required
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles.checkout__postal}>
-            <label>Postal code</label>
-            <input
+        <div className={styles.information__address}>
+          <label>우편 번호</label>
+          <input
               type="text"
               name="postalCode"
               required
               onChange={handleChange}
-             />
-          </div>
+          />
         </div>
         <div>
-          <h4 className={styles.checkout__title}>Billing information</h4>
           <label>
             <input
               type="checkbox"
@@ -124,11 +101,11 @@ const PersonalInformation = () => {
               checked={formData.sameAsShipping}
               onChange={handleChange}
             />
-            Same as shipping information
+            배송 정보 동일
           </label>
         </div>
-        <button className={styles.checkout__submitBtn} type="submit">
-          <Link to={"/"}>Pay Now</Link>
+        <button className={styles.information__submitBtn} type="submit">
+          <Link to={"/"}>구매하기</Link>
         </button>
       </form>
     </div>
