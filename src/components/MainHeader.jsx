@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { PRODUCT_LINKS } from '../constants/navigationItems';
 import styles from '../styles/components/MainHeader.module.css';
 import HeaderNavigation from './HeaderNavigation';
@@ -8,44 +8,58 @@ import logo from '../assets/images/logo.png';
 import profilePlaceholder from '../assets/images/placeholder-profile.jpeg';
 
 const MainHeader = () => {
-  const isLoggedIn = true;
+  const navigate = useNavigate();
+
+  const isLoggedIn = !!localStorage.getItem('token');
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [profileLink, setProfileLink] = useState([
-    {
-      link: '/profile',
-      name: '마이페이지',
-    },
-  ]);
-  // TODO: 로그인 기능 완료 후 조건부로 state 관리
-  // { link: '/login', name: '로그인하기' }
 
+  //
+  const profileLink = isLoggedIn
+    ? [
+        { link: '/profile', name: '마이페이지' },
+        { link: '#', name: '로그아웃', onClick: handleLogout },
+      ]
+    : [
+        { link: '/login', name: '로그인하기' },
+        { link: '/signup', name: '회원가입' },
+      ];
+
+  //드롭다운
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  // 로그아웃
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    navigate('/');
+    window.location.reload();
+  };
+
   return (
-    <>
-      <div className={styles.header__auth}>
-        <Link to="/login">Login</Link>
-        <Link to="/signup">Sign Up</Link>
+    <div className={styles.header__menu}>
+      <Link to="/">
+        <img src={logo} alt="logo" className={styles.header__menu_image} />
+      </Link>
+      <HeaderNavigation links={PRODUCT_LINKS} />
+      <div className={styles.header__menu_profileWrapper}>
+        <button
+          onClick={toggleDropdown}
+          className={styles.header__menu_profile}
+        >
+          <img
+            src={profilePlaceholder}
+            alt="profile"
+            className={styles.header__menu_profileImage}
+          />
+        </button>
+        {isDropdownOpen && (
+          <DropdownMenu links={profileLink} onClose={toggleDropdown} />
+        )}
       </div>
-      <div className={styles.header__menu}>
-        <Link to="/">
-          <img src={logo} alt="logo" className={styles.header__menu_image} />
-        </Link>
-        <HeaderNavigation links={PRODUCT_LINKS} />
-        <div className={styles.header__menu_profileWrapper}>
-          <button
-            onClick={toggleDropdown}
-            className={styles.header__menu_profile}
-          >
-            <img src={profilePlaceholder} alt="profile" className={''} />
-          </button>
-          {isDropdownOpen ? <DropdownMenu links={profileLink} /> : null}
-        </div>
-      </div>
-    </>
+    </div>
   );
 };
 
