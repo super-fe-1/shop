@@ -1,8 +1,21 @@
-const FormInput = ({ label, ...props }) => {
+const FormInput = ({
+  label,
+  fieldData,
+  handleOnChange,
+  regex,
+  errorMessage,
+}) => {
   return (
     <div>
       <label>{label}</label>
-      <input autoComplete="off" {...props} />
+      <input
+        id={fieldData.id}
+        type={fieldData.type}
+        required={fieldData.required}
+        onChange={handleOnChange}
+        autoComplete="off"
+      />
+      <p>{errorMessage}</p>
     </div>
   );
 };

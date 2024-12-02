@@ -20,7 +20,7 @@ const formatPhoneNumber = (phoneNumber) => {
   }
 
   // 형식에 맞지 않는 경우
-  return null;
+  return phoneNumber;
 };
 
 export default formatPhoneNumber;
