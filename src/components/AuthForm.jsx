@@ -36,30 +36,16 @@ const AuthForm = () => {
   const authValidators = {
     email: {
       regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      errorMessage: '이메일 형식에 맞지 않습니다.',
+      helpText: '이메일 형식에 맞지 않습니다.',
     },
     password: {
       regex: /^[A-Za-z0-9]{8,20}$/,
-      errorMessage: '비밀번호는 8~20자 사이의 영문자와 숫자만 가능합니다.',
+      helpText: '비밀번호는 8~20자 사이의 영문자와 숫자만 가능합니다.',
     },
     tel: {
       regex: /^[\d-]+$/,
-      errorMessage: '전화번호를 확인해주세요',
+      helpText: '전화번호를 확인해주세요',
     },
-  };
-
-  const validateInput = (e) => {
-    const { id, value } = e.target;
-
-    setAuthFormData({
-      ...authFormData,
-      [id]: value,
-    });
-
-    if (authValidators[id]) {
-      const { regex, errorMessage } = authValidators[id];
-      const isValid = regex.test(value);
-    }
   };
 
   const handleSubmit = (e) => {
@@ -74,9 +60,9 @@ const AuthForm = () => {
             key={field.id}
             label={field.name}
             fieldData={field}
-            handleOnChange={validateInput}
+            handleOnChange={setAuthFormData}
             regex={authValidators[field.id]?.regex}
-            errorMessage={authValidators[field.id]?.errorMessage}
+            helpText={authValidators[field.id]?.helpText}
           />
         ))}
       </div>
