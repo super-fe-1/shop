@@ -1,0 +1,19 @@
+.header__auth {
+  @apply flex items-center justify-end px-4 py-2 text-white gap-x-4 bg-text-primary;
+}
+
+.header__menu {
+  @apply flex items-center justify-between px-4 py-2;
+}
+
+.header__menu_image {
+  @apply w-8 h-auto;
+}
+
+.header__menu_profileWrapper {
+  @apply relative;
+}
+
+.header__menu_profile {
+  @apply w-8;
+}

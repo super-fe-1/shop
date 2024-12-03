@@ -1,0 +1,13 @@
+.profile {
+  @apply bg-background-secondary p-12;
+}
+
+.profile__title {
+  @apply text-3xl font-bold;
+}
+
+.profile__image {
+  @apply w-40 h-40 bg-teal-50 rounded-full;
+  @apply flex items-center justify-center;
+  @apply object-cover;
+}

@@ -1,34 +1,65 @@
-
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { PRODUCT_LINKS } from '../constants/navigationItems';
+import styles from '../styles/components/MainHeader.module.css';
+import HeaderNavigation from './HeaderNavigation';
+import DropdownMenu from './DropdownMenu';
+import logo from '../assets/images/logo.png';
+import profilePlaceholder from '../assets/images/placeholder-profile.jpeg';
 
 const MainHeader = () => {
+  const navigate = useNavigate();
+
+  const isLoggedIn = !!localStorage.getItem('token');
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  //
+  const profileLink = isLoggedIn
+    ? [
+        { link: '/profile', name: '마이페이지' },
+        { link: '#', name: '로그아웃', onClick: handleLogout },
+      ]
+    : [
+        { link: '/login', name: '로그인하기' },
+        { link: '/signup', name: '회원가입' },
+      ];
+
+  //드롭다운
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  // 로그아웃
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    navigate('/');
+    window.location.reload();
+  };
+
   return (
-    <>
-      <div className="flex justify-end gap-x-4 cursor-pointer bg-neutral-900 text-zinc-50 border-t-4 rounded-md ">
-        <a> login</a>
-        <a> signup</a>
+    <div className={styles.header__menu}>
+      <Link to="/">
+        <img src={logo} alt="logo" className={styles.header__menu_image} />
+      </Link>
+      <HeaderNavigation links={PRODUCT_LINKS} />
+      <div className={styles.header__menu_profileWrapper}>
+        <button
+          onClick={toggleDropdown}
+          className={styles.header__menu_profile}
+        >
+          <img
+            src={profilePlaceholder}
+            alt="profile"
+            className={styles.header__menu_profileImage}
+          />
+        </button>
+        {isDropdownOpen && (
+          <DropdownMenu links={profileLink} onClose={toggleDropdown} />
+        )}
       </div>
-      <div className="flex justify-between items-center px-4 py-2 border-[1px] rounded-[5px]">
-        <div className="cursor-pointer">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNhoXisDruJMDAq3Ltd-wuaMW2lGxck9wAKw&s" alt="Logo" className="h-8" />
-        </div>
-
-        {/* Middle Navigation */}
-        <div className="flex gap-4 cursor-pointer">
-          <div>women</div>
-          <div>men</div>
-          <div>company</div>
-          <div>stores</div>
-        </div>
-
-        {/* Other Actions */}
-        <div className="flex gap-4 cursor-pointer">
-          <div>Search</div>
-          <div>Help</div>
-          <div>img</div>
-        </div>
-      </div>
-
-    </>
+    </div>
   );
 };
 
