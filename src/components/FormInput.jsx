@@ -13,7 +13,7 @@ const FormInput = ({ label, fieldData, regex, helpText }) => {
     }
 
     if (regex) {
-      setIsValid(!regex.test(value));
+      setIsValid(regex.test(value));
     }
   };
 
