@@ -22,6 +22,7 @@ const FormInput = ({ label, fieldData, regex, helpText }) => {
       <label>{label}</label>
       <input
         id={fieldData.id}
+        name={fieldData.id}
         type={fieldData.type}
         required={fieldData.required}
         onChange={validateValue}

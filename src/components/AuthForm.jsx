@@ -1,36 +1,37 @@
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { __signup, __login } from '../redux/modules/user';
 import FormInput from './FormInput';
+import cleanPhoneNumber from '../utils/cleanPhoneNumber';
 
 const AuthForm = () => {
   const location = useLocation();
-
-  const [authFormData, setAuthFormData] = useState({});
+  const dispatch = useDispatch();
 
   const pathname = location.pathname;
 
   const authFormFields =
     pathname === '/login'
       ? [
-          { id: 'email', name: '이메일', type: 'email', required: true },
+          { id: 'email', label: '이메일', type: 'email', required: true },
           {
             id: 'password',
-            name: '비밀번호',
+            label: '비밀번호',
             type: 'password',
             required: true,
           },
         ]
       : [
-          { id: 'email', name: '이메일', type: 'email', required: true },
+          { id: 'email', label: '이메일', type: 'email', required: true },
           {
             id: 'password',
-            name: '비밀번호',
+            label: '비밀번호',
             type: 'password',
             required: true,
           },
-          { id: 'tel', name: '전화번호', type: 'tel', required: true },
-          { id: 'address', name: '주소', type: 'text', required: true },
-          { id: 'profileImg', name: '프로필', type: 'file', required: false },
+          { id: 'tel', label: '전화번호', type: 'tel', required: true },
+          { id: 'address', label: '주소', type: 'text', required: true },
+          { id: 'profileImg', label: '프로필', type: 'file', required: false },
         ];
 
   const authValidators = {
@@ -50,6 +51,18 @@ const AuthForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const formValues = {};
+    formData.forEach((value, key) => {
+      formValues[key] = value;
+    });
+
+    if (pathname === '/signup') {
+      dispatch(__signup(formValues));
+    } else if (pathname === '/login') {
+      dispatch(__login(formValues));
+    }
   };
 
   return (
@@ -58,9 +71,8 @@ const AuthForm = () => {
         {authFormFields.map((field) => (
           <FormInput
             key={field.id}
-            label={field.name}
+            label={field.label}
             fieldData={field}
-            handleOnChange={setAuthFormData}
             regex={authValidators[field.id]?.regex}
             helpText={authValidators[field.id]?.helpText}
           />
