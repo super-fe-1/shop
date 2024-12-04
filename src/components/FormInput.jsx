@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import formatPhoneNumber from '../utils/formatPhoneNumber';
 
-const FormInput = ({ label, fieldData, handleOnChange, regex, helpText }) => {
-  const [isInvalid, setIsInvalid] = useState(false);
+const FormInput = ({ label, fieldData, regex, helpText }) => {
+  const [isValid, setIsValid] = useState(true);
 
-  const validValue = (e) => {
+  const validateValue = (e) => {
     let { value } = e.target;
 
     if (fieldData.type === 'tel') {
@@ -13,10 +13,8 @@ const FormInput = ({ label, fieldData, handleOnChange, regex, helpText }) => {
     }
 
     if (regex) {
-      setIsInvalid(!regex.test(value));
+      setIsValid(!regex.test(value));
     }
-
-    handleOnChange(e);
   };
 
   return (
@@ -26,10 +24,10 @@ const FormInput = ({ label, fieldData, handleOnChange, regex, helpText }) => {
         id={fieldData.id}
         type={fieldData.type}
         required={fieldData.required}
-        onChange={validValue}
+        onChange={validateValue}
         autoComplete="off"
       />
-      {isInvalid && <p>{helpText}</p>}
+      {!isValid && <p>{helpText}</p>}
     </div>
   );
 };
