@@ -1,15 +1,13 @@
-if (process.env.NODE_ENV !== 'production') {
-  const jsonServer = require('json-server');
-  const auth = require('json-server-auth');
-  const server = jsonServer.create();
-  const router = jsonServer.router('db.json');
-  const middlewares = jsonServer.defaults();
+const jsonServer = require('json-server');
+const auth = require('json-server-auth');
+const server = jsonServer.create();
+const router = jsonServer.router('db.json');
+const middlewares = jsonServer.defaults();
 
-  server.use(middlewares);
-  server.use(auth);
-  server.use(router);
+server.use(middlewares);
+server.use(auth);
+server.use(router);
 
-  server.listen(3001, () => {
-    console.log('JSON Server with auth is running in development mode');
-  });
-}
+server.listen(3001, () => {
+  console.log('JSON Server with auth is running in development mode');
+});
