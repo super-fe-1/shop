@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
 import axios from '../../axios/axios';
+
+const saveToken = (token) => localStorage.setItem('accessToken', token);
+const removeToken = () => localStorage.removeItem('accessToken');
 
 const initialState = {
   isLog: false,
@@ -38,7 +40,6 @@ export const userSlice = createSlice({
     builder
       // 회원가입
       .addCase(__signup.fulfilled, (state, action) => {
-        localStorage.setItem('accessToken', action.payload);
         state.isLog = false;
       })
       .addCase(__signup.rejected, (state, action) => {
@@ -47,7 +48,7 @@ export const userSlice = createSlice({
 
       // 로그인
       .addCase(__login.fulfilled, (state, action) => {
-        localStorage.setItem('accessToken', action.payload);
+        saveToken(action.payload);
         state.isLog = true;
       })
       .addCase(__login.rejected, (state, action) => {
