@@ -10,7 +10,7 @@ const DetailPage = () => {
 
   useEffect(() => {
     const getDetail = async () => {
-      const res = await axios.get(`/users`);
+      const res = await axios.get(`/cart`);
       setDetail(res.data);
       console.log(res.data);
     };
@@ -24,29 +24,13 @@ const DetailPage = () => {
   const handleAddToCart = async (item) => {
     try {
       const payload = {
-        "productId": 1,
-        "title": "Product 1",
-        "price": 10000,
-        "contents": "Description of Product 1",
-        "productStock": 10,
-        "productImageUrl": "http://example.com/product1.jpg",
-        "colorOptions": [
-          {
-            "optionType": "색상",
-            "optionValue": "Red"
-          },
-          {
-            "optionType": "색상",
-            "optionValue": "Blue"
-          },
-          {
-            "optionType": "색상",
-            "optionValue": "Green"
-          }
-        ]
+        productId: item.productId,
+        title: item.title,
+        price: item.price,
+        colorOptions: selectedColor || "미선택",
       };
       console.log("보낼 데이터:", payload);
-      const response = await axios.post(`/users`,payload);
+      const response = await axios.post(`http://localhost:3001/cart`,payload);
       // const response = await axios.post(`/api/products/${item.productId}`, payload);
       console.log("장바구니에 추가 성공:", response.data);
       alert("장바구니에 추가되었습니다!");
