@@ -10,9 +10,8 @@ const initialState = {
 
 export const __signup = createAsyncThunk('signup', async (payload, api) => {
   try {
-    const res = await axios.post(`/users`, payload);
-    // const res = await axios.post(`/api/auth/register`, payload);
-    console.log(res);
+    await axios.post(`/users`, payload);
+    // await axios.post(`/api/auth/register`, payload);
   } catch (err) {
     return api.rejectWithValue(err.response.status);
   }
@@ -20,11 +19,9 @@ export const __signup = createAsyncThunk('signup', async (payload, api) => {
 
 export const __login = createAsyncThunk('login', async (payload, api) => {
   try {
-    console.log(payload);
     const res = await axios.post(`/login`, payload);
-    console.log(res);
-    // const res = await axios.post(`api/auth/login`, payload);
-    // return res.data.accessToken;
+    //const res =await axios.post(`api/auth/login`, payload);
+    return res.data.accessToken;
   } catch (err) {
     return api.rejectWithValue(err.response.status);
   }
