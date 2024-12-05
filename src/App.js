@@ -11,6 +11,8 @@ function App() {
   if (accessToken) {
     setToken(accessToken);
     dispatch(setLogin(true));
+  } else {
+    dispatch(setLogin(false));
   }
 
   return (

@@ -1,5 +1,6 @@
 .header__auth {
-  @apply flex items-center justify-end px-4 py-2 text-white gap-x-4 bg-text-primary;
+  @apply px-4 text-white gap-x-4 bg-text-primary h-7;
+  @apply flex items-center justify-end;
 }
 
 .header__menu {
