@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import PrivateRoute from './PrivateRoute';
 // layout
 import MainLayout from '../components/layouts/MainLayout';
 // pages
@@ -11,7 +13,9 @@ import CartPage from '../pages/CartPage';
 import OrderPage from '../pages/OrderPage';
 import NotFoundPage from '../pages/NotFoundPage';
 
-const AppRouter = () => {
+const Router = () => {
+  const isLog = useSelector((state) => state.user.isLog);
+
   return (
     <BrowserRouter
       future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
@@ -23,9 +27,11 @@ const AppRouter = () => {
           <Route path="/signup" element={<AuthPage />} />
           <Route path="/detail/:id" element={<DetailPage />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/products/upload" element={<ProductUploadPage />} />
-          <Route path="/products/cart" element={<CartPage />} />
-          <Route path="/products/order" element={<OrderPage />} />
+          <Route element={<PrivateRoute isLog={isLog} />}>
+            <Route path="/products/upload" element={<ProductUploadPage />} />
+            <Route path="/products/cart" element={<CartPage />} />
+            <Route path="/products/order" element={<OrderPage />} />
+          </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
@@ -33,4 +39,4 @@ const AppRouter = () => {
   );
 };
 
-export default AppRouter;
+export default Router;
