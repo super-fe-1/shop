@@ -7,9 +7,7 @@ const DropdownMenu = ({ links }) => {
       {links.map((link, i) => {
         return (
           <li key={i}>
-            <Link to={link.link} className={styles.dropdown__item}>
-              {link.name}
-            </Link>
+            <Link to={link.link}>{link.name}</Link>
           </li>
         );
       })}

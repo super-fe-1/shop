@@ -26,11 +26,15 @@ const MainHeader = () => {
           name: '마이페이지',
         },
         {
-          link: '/cart',
+          link: '/products/cart',
           name: '장바구니',
         },
         {
-          link: '/products/update',
+          link: '/products/order',
+          name: '주문하기',
+        },
+        {
+          link: '/products/upload',
           name: '상품판매',
         },
         {
