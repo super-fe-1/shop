@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { PRODUCT_LINKS } from '../constants/navigationItems';
 import styles from '../styles/components/MainHeader.module.css';
 import HeaderNavigation from './HeaderNavigation';
@@ -9,8 +9,6 @@ import logo from '../assets/images/logo.png';
 import profilePlaceholder from '../assets/images/placeholder-profile.jpeg';
 
 const MainHeader = () => {
-  const location = useLocation();
-
   const isLog = useSelector((state) => state.user.isLog);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -31,10 +29,6 @@ const MainHeader = () => {
       : [{ link: '/login', name: '로그인하기' }];
     setDropdownMenu(links);
   }, [isLog]);
-
-  useEffect(() => {
-    setIsDropdownOpen(false);
-  }, [location.pathname]);
 
   return (
     <>
@@ -58,7 +52,12 @@ const MainHeader = () => {
           >
             <img src={profilePlaceholder} alt="profile" />
           </button>
-          {isDropdownOpen && <DropdownMenu links={dropdownMenu} />}
+          {isDropdownOpen && (
+            <DropdownMenu
+              links={dropdownMenu}
+              onClick={() => setIsDropdownOpen(false)}
+            />
+          )}
         </div>
       </div>
     </>
