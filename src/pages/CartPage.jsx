@@ -4,16 +4,38 @@ import styles from '../styles/pages/CartPage.module.css';
 
 const CartPage = () => {
   const [cart, setCart] = useState([]);
+  const [selectedProducts, setSelectedProducts] = useState([]);
 
   const getCart = async () => {
     await axios
       .get(`/products`)
       .then((res) => {
         setCart(res.data);
+        setSelectedProducts(res.data.map((item) => item.productId));
       })
       .catch((err) => {
         console.error(err);
       });
+  };
+
+  const handleSelectAll = (e) => {
+    if (e.target.checked) {
+      setSelectedProducts(cart.map((item) => item.productId));
+    } else {
+      setSelectedProducts([]);
+    }
+  };
+
+  const handleSelectProduct = (productId) => {
+    setSelectedProducts((prevCheckedProducts) => {
+      if (prevCheckedProducts.includes(productId)) {
+        // 체크 해제
+        return prevCheckedProducts.filter((id) => id !== productId);
+      } else {
+        // 체크
+        return [...prevCheckedProducts, productId];
+      }
+    });
   };
 
   useEffect(() => {
@@ -25,14 +47,22 @@ const CartPage = () => {
   return (
     <div className={styles.cart}>
       <div className={styles.cart__header}>
-        <input type="checkbox" />
+        <input
+          type="checkbox"
+          checked={cart.length > 0 && selectedProducts.length === cart.length} // 전체 선택 체크박스 상태
+          onChange={handleSelectAll}
+        />
         <label>전체 선택</label>
       </div>
       <ul>
         {cart.map((item, i) => {
           return (
             <li key={i} className={styles.item}>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={selectedProducts.includes(item.productId)}
+                onChange={() => handleSelectProduct(item.productId)}
+              />
               <div className={styles.item__info}>
                 <img
                   src={item.productImageUrl}
