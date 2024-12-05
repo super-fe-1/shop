@@ -44,10 +44,10 @@ const ProfilePage = () => {
         />
         {isLog ? (
           <ul className={styles.profile__info_fieldContainer}>
-            {profileFields.map((field) => {
+            {profileFields.map((field, i) => {
               const { label, key } = field;
               return (
-                <li key={field.id} className={styles.profile__info_field}>
+                <li key={i} className={styles.profile__info_field}>
                   <p>{label}</p>
                   <p>{profile[key]}</p>
                 </li>
