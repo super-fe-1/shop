@@ -1,29 +1,60 @@
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import FormInput from '../components/FormInput';
+import axios from '../axios/axios';
 import styles from '../styles/pages/ProfilePage.module.css';
 import profilePlaceholder from '../assets/images/placeholder-profile.jpeg';
 
 const ProfilePage = () => {
-  const isLoggedIn = true;
+  const isLog = useSelector((state) => state.user.isLog);
 
-  const FORM_INPUTS = [
-    { label: '이메일', id: 'email', type: 'email' },
-    { label: '이름', id: 'name', type: 'text' },
-    { label: '성별', id: 'gender', type: 'radio' },
-    { label: '전화번호', id: 'phone', type: 'tel' },
-    { label: '주소', id: 'address', type: 'text' },
+  const [profile, setProfile] = useState([]);
+
+  const profileFields = [
+    { label: '이메일', key: 'email' },
+    { label: '전화번호', key: 'tel' },
+    { label: '주소', key: 'address' },
+    { label: '성별', key: 'gender' },
   ];
+
+  const getProfile = async () => {
+    await axios
+      // .get(`/mypage/info`)
+      .get(`/profile`)
+      .then((res) => {
+        setProfile(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  useEffect(() => {
+    getProfile();
+  }, []);
 
   return (
     <div className={styles.profile}>
       <h2 className={styles.profile__title}>마이페이지</h2>
       <div className={styles.profile__info}>
         <img
-          className={styles.profile__image}
+          className={styles.profile__info_image}
           src={profilePlaceholder}
           alt="profile"
         />
-        {!isLoggedIn && (
+        {isLog ? (
+          <ul className={styles.profile__info_fieldContainer}>
+            {profileFields.map((field) => {
+              const { label, key } = field;
+              return (
+                <li key={field.id} className={styles.profile__info_field}>
+                  <p>{label}</p>
+                  <p>{profile[key]}</p>
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
           <div className={styles.profile__loginPrompt}>
             <p className={styles.profile__loginPrompt_text}>
               아직 로그인을 하지 않았어요
@@ -33,21 +64,6 @@ const ProfilePage = () => {
             </Link>
           </div>
         )}
-        <form className={styles.profile__form}>
-          {FORM_INPUTS.map((input) => (
-            <FormInput key={input.id} label={input.label} />
-          ))}
-        </form>
-      </div>
-      <div className={styles.profile__menu}>
-        <ul>
-          <li>
-            <button>장바구니</button>
-          </li>
-          <li>
-            <button>로그아웃</button>
-          </li>
-        </ul>
       </div>
     </div>
   );
