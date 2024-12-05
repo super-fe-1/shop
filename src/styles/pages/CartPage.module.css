@@ -40,3 +40,9 @@
 .item__desc_price {
   @apply font-medium;
 }
+
+.cart__button {
+  @apply inline-block w-full px-4 py-2 transition-all rounded-lg shadow bg-accent;
+  @apply text-center text-white;
+  @apply hover:bg-accent-hover;
+}

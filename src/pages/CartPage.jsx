@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from '../axios/axios';
 import styles from '../styles/pages/CartPage.module.css';
 
@@ -89,6 +90,9 @@ const CartPage = () => {
           );
         })}
       </ul>
+      <Link className={styles.cart__button} to="/products/order">
+        구매하기
+      </Link>
     </div>
   );
 };
