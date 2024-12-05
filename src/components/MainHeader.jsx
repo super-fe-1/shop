@@ -27,7 +27,6 @@ const MainHeader = () => {
           { link: '/products/cart', name: '장바구니' },
           { link: '/products/order', name: '주문하기' },
           { link: '/products/upload', name: '상품판매' },
-          { link: '/logout', name: '로그아웃' },
         ]
       : [{ link: '/login', name: '로그인하기' }];
     setDropdownMenu(links);

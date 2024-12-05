@@ -9,7 +9,6 @@ import ProfilePage from '../pages/ProfilePage';
 import ProductUploadPage from '../pages/ProductUploadPage';
 import CartPage from '../pages/CartPage';
 import OrderPage from '../pages/OrderPage';
-import LogoutPage from '../pages/LogoutPage';
 import NotFoundPage from '../pages/NotFoundPage';
 
 const AppRouter = () => {
@@ -27,7 +26,6 @@ const AppRouter = () => {
           <Route path="/products/upload" element={<ProductUploadPage />} />
           <Route path="/products/cart" element={<CartPage />} />
           <Route path="/products/order" element={<OrderPage />} />
-          <Route path="/logout" element={<LogoutPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
