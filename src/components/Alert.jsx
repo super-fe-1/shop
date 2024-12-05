@@ -7,9 +7,11 @@ const Alert = ({ isAlertShow, onClose, children }) => {
 
   return ReactDOM.createPortal(
     <section className={styles.alert__container}>
-      <button onClick={onClose} className={styles.alert__close}>
-        <IoIosClose />
-      </button>
+      {onClose && (
+        <button onClick={onClose} className={styles.alert__close}>
+          <IoIosClose />
+        </button>
+      )}
       {children}
     </section>,
     document.getElementById('alert')

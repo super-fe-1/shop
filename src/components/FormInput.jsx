@@ -1,15 +1,28 @@
 import { useState } from 'react';
 import formatPhoneNumber from '../utils/formatPhoneNumber';
 
-const FormInput = ({ label, fieldData, regex, helpText }) => {
+const FormInput = ({ label, fieldData, regex, helpText, onFileChange }) => {
   const [isValid, setIsValid] = useState(true);
+  const [imageBase64, setImageBase64] = useState(null);
 
-  const validateValue = (e) => {
+  const handleInputValue = (e) => {
     let { value } = e.target;
 
     if (fieldData.type === 'tel') {
       value = formatPhoneNumber(value);
       e.target.value = value;
+    }
+
+    if (fieldData.type === 'file') {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setImageBase64(reader.result); // Base64 값 저장
+          if (onFileChange) onFileChange(reader.result); // 부모로 Base64 값을 전달
+        };
+        reader.readAsDataURL(file); // 파일을 Base64로 변환
+      }
     }
 
     if (regex) {
@@ -25,9 +38,19 @@ const FormInput = ({ label, fieldData, regex, helpText }) => {
         name={fieldData.id}
         type={fieldData.type}
         required={fieldData.required}
-        onChange={validateValue}
+        onChange={handleInputValue}
         autoComplete="off"
       />
+      {fieldData.type === 'file' && imageBase64 && (
+        <div>
+          <p>파일이 선택되었습니다.</p>
+          <img
+            src={imageBase64}
+            alt="Selected"
+            style={{ maxWidth: '100px', maxHeight: '100px' }}
+          />
+        </div>
+      )}
       {!isValid && <p>{helpText}</p>}
     </div>
   );
