@@ -40,6 +40,15 @@
   @apply hover:bg-accent-hover;
 }
 
+.profile__loginPrompt {
+  @apply flex flex-col items-center gap-1 text-sm;
+}
+
+.profile__loginPrompt_link {
+  @apply font-semibold underline text-accent;
+  @apply hover:text-accent-hover;
+}
+
 .alert__content {
   @apply flex flex-col items-center;
   @apply gap-y-2;

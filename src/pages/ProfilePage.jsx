@@ -80,9 +80,7 @@ const ProfilePage = () => {
             </>
           ) : (
             <div className={styles.profile__loginPrompt}>
-              <p className={styles.profile__loginPrompt_text}>
-                아직 로그인을 하지 않았어요
-              </p>
+              <p>아직 로그인을 하지 않았어요</p>
               <Link to="/login" className={styles.profile__loginPrompt_link}>
                 로그인하기
               </Link>
