@@ -1,0 +1,42 @@
+.cart__header {
+  @apply flex items-center gap-4 mb-4;
+  @apply text-sm font-medium;
+}
+
+.cart {
+  @apply w-4/5 md:w-2/3 mx-auto py-12;
+}
+
+.item {
+  @apply mb-4;
+  @apply flex items-start gap-4;
+}
+
+.item__info {
+  @apply w-full h-full;
+  @apply flex gap-2;
+}
+
+.item__info_image {
+  @apply w-24 h-24 md:w-40 md:h-40 rounded border;
+}
+
+.item__info_desc {
+  @apply text-sm md:text-base flex flex-col gap-1;
+}
+
+.item__desc_option {
+  @apply flex gap-1;
+}
+
+.option {
+  @apply border-r pr-1 text-sm font-light text-text-secondary;
+}
+
+.option:last-child {
+  @apply border-r-0;
+}
+
+.item__desc_price {
+  @apply font-medium;
+}
