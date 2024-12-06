@@ -1,35 +1,12 @@
-<<<<<<< HEAD
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from '../styles/pages/DetailPage.module.css';
-
-const DetailPage = () => {
-  const { id } = useParams();
-  // 일단 목업데이터로 생성
-  const mockData = {
-    1: {
-      name: 'Product 1',
-      description: 'This is a great product that you will love.',
-      price: '$100',
-      image: 'image1.jpg',
-    },
-  };
-
-  const product = mockData[id] || {
-    name: 'Unknown Product',
-    description: 'No details available.',
-    price: '-',
-    image: 'placeholder.jpg', // 기본 이미지
-=======
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import styles from "../styles/components/DetailPage.module.css";
-import axios from "../axios/axios";
+import axios from '../axios/axios';
 
 const DetailPage = () => {
   const { productId } = useParams();
   const [detail, setDetail] = useState([]);
-  const [selectedColor, setSelectedColor] = useState("");
+  const [selectedColor, setSelectedColor] = useState('');
 
   useEffect(() => {
     const getDetail = async () => {
@@ -50,20 +27,18 @@ const DetailPage = () => {
         productId: item.productId,
         title: item.title,
         price: item.price,
-        colorOptions: selectedColor || "미선택",
+        colorOptions: selectedColor || '미선택',
       };
-      console.log("보낼 데이터:", payload);
-      const response = await axios.post(`http://localhost:3001/cart`,payload);
+      console.log('보낼 데이터:', payload);
+      const response = await axios.post(`http://localhost:3001/cart`, payload);
       // const response = await axios.post(`/api/products/${item.productId}`, payload);
-      console.log("장바구니에 추가 성공:", response.data);
-      alert("장바구니에 추가되었습니다!");
+      console.log('장바구니에 추가 성공:', response.data);
+      alert('장바구니에 추가되었습니다!');
     } catch (error) {
-      console.error("장바구니 추가 중 오류:", error);
-      alert("장바구니 추가에 실패했습니다.");
+      console.error('장바구니 추가 중 오류:', error);
+      alert('장바구니 추가에 실패했습니다.');
     }
->>>>>>> feature/detail-page-api
   };
-
 
   return (
     <div className={styles.product}>
@@ -77,22 +52,12 @@ const DetailPage = () => {
             />
           </div>
 
-<<<<<<< HEAD
-      <div className={styles.product__details}>
-        <h1 className={styles.product__details_name}>{product.name}</h1>
-        <p className={styles.product__details_price}>{product.price}</p>
-        <p className={styles.product__details_description}>
-          {product.description}
-        </p>
-        <button className={styles.product__details_button}>
-          장바구니에 추가
-        </button>
-      </div>
-=======
           <div className={styles.product__details}>
             <h1 className={styles.product__details_name}>{item.title}</h1>
             <p className={styles.product__details_price}>{item.price}원</p>
-            <p className={styles.product__details_description}>{item.contents}</p>
+            <p className={styles.product__details_description}>
+              {item.contents}
+            </p>
 
             <div className={styles.product__details_colors}>
               <p>색상</p>
@@ -122,7 +87,6 @@ const DetailPage = () => {
           </div>
         </div>
       ))}
->>>>>>> feature/detail-page-api
     </div>
   );
 };

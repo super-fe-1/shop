@@ -25,12 +25,8 @@ const Router = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<AuthPage />} />
           <Route path="/signup" element={<AuthPage />} />
-<<<<<<< HEAD
-          <Route path="/detail/:id" element={<DetailPage />} />
-=======
           <Route path="/" element={<HomePage />} />
           <Route path="/detail/:productId" element={<DetailPage />} />
->>>>>>> feature/detail-page-api
           <Route path="/profile" element={<ProfilePage />} />
           <Route element={<PrivateRoute isLog={isLog} />}>
             <Route path="/products/upload" element={<ProductUploadPage />} />
