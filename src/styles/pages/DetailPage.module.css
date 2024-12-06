@@ -22,6 +22,30 @@
     @apply text-gray-700
 }
 
+.product__details_colors {
+  @apply mt-6;
+}
+
+.product__details_colors p {
+  @apply text-lg font-semibold;
+}
+
+.product__details_colors .color_button {
+  @apply px-4 py-2 rounded-lg text-lg;
+}
+
+.product__details_colors .selected {
+  @apply bg-blue-500 text-white;
+}
+
+.product__details_colors .default {
+  @apply bg-gray-200 text-black;
+}
+
+.product__details_color{
+  @apply flex gap-4
+}
+
 .product__details_button {
   @apply mt-4 px-6 py-2 bg-[#302e81] text-white rounded-lg shadow transition-all;
 }
