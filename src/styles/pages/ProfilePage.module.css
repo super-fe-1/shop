@@ -1,0 +1,75 @@
+.profile {
+  @apply p-12 bg-background-secondary;
+  @apply flex flex-col items-center;
+}
+
+.profile__title {
+  @apply pb-4 text-3xl font-bold;
+}
+
+.profile__info {
+  @apply flex flex-col items-center;
+}
+
+.profile__info_image {
+  @apply w-40 h-40 rounded-full bg-teal-50;
+  @apply flex items-center justify-center;
+  @apply object-cover;
+  @apply mb-8;
+}
+
+.profile__info_field {
+  @apply flex items-start w-80;
+  @apply pb-2;
+  @apply px-4 border-l border-r;
+}
+
+.profile__info_label {
+  @apply w-28;
+  @apply font-light;
+}
+
+.profile__info_value {
+  @apply flex-1;
+  @apply break-words;
+}
+
+.profile__logout {
+  @apply mt-20;
+  @apply px-4 py-2 text-white transition-all rounded-lg shadow bg-accent;
+  @apply hover:bg-accent-hover;
+}
+
+.profile__loginPrompt {
+  @apply flex flex-col items-center gap-1 text-sm;
+}
+
+.profile__loginPrompt_link {
+  @apply font-semibold underline text-accent;
+  @apply hover:text-accent-hover;
+}
+
+.alert__content {
+  @apply flex flex-col items-center;
+  @apply gap-y-2;
+}
+
+.alert__content_text {
+  @apply py-4 text-lg text-center;
+}
+
+.alert__button_wrapper {
+  @apply flex items-center justify-center w-full gap-8;
+}
+
+.alert__button {
+  @apply p-2 px-4 text-sm font-semibold transition-all rounded-lg shadow;
+}
+
+.alert__confirm {
+  @apply text-success;
+}
+
+.alert__cancel {
+  @apply text-error;
+}

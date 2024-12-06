@@ -1,0 +1,10 @@
+.dropdown {
+  @apply absolute right-0;
+  @apply w-32 py-2 rounded-lg shadow bg-background-secondary;
+  @apply flex flex-col items-center gap-1;
+  @apply animate-fade-in;
+}
+
+.dropdown__link:hover {
+  @apply font-semibold text-accent;
+}

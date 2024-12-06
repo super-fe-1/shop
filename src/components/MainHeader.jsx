@@ -1,33 +1,65 @@
-
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { PRODUCT_LINKS } from '../constants/navigationItems';
+import styles from '../styles/components/MainHeader.module.css';
+import HeaderNavigation from './HeaderNavigation';
+import DropdownMenu from './DropdownMenu';
+import logo from '../assets/images/logo.png';
+import profilePlaceholder from '../assets/images/placeholder-profile.jpeg';
 
 const MainHeader = () => {
+  const isLog = useSelector((state) => state.user.isLog);
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [dropdownMenu, setDropdownMenu] = useState([]);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  useEffect(() => {
+    const links = isLog
+      ? [
+          { link: '/profile', name: '마이페이지' },
+          { link: '/products/cart', name: '장바구니' },
+          { link: '/products/order', name: '주문하기' },
+          { link: '/products/upload', name: '상품판매' },
+        ]
+      : [{ link: '/login', name: '로그인하기' }];
+    setDropdownMenu(links);
+  }, [isLog]);
+
   return (
     <>
-      <div className="flex justify-end gap-x-4 cursor-pointer bg-neutral-900 text-zinc-50 border-t-4 rounded-md ">
-        <a> login</a>
-        <a> signup</a>
+      <div className={styles.header__auth}>
+        {!isLog && (
+          <>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
+          </>
+        )}
       </div>
-      <div className="flex justify-between items-center px-4 py-2 border-[1px] rounded-[5px]">
-        <div className="cursor-pointer">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNhoXisDruJMDAq3Ltd-wuaMW2lGxck9wAKw&s" alt="Logo" className="h-8" />
-        </div>
-
-        {/* Middle Navigation */}
-        <div className="flex gap-4 cursor-pointer">
-          <div>women</div>
-          <div>men</div>
-          <div>company</div>
-          <div>stores</div>
-        </div>
-
-        {/* Other Actions */}
-        <div className="flex gap-4 cursor-pointer">
-          <div>Search</div>
-          <div>Help</div>
-          <div>img</div>
+      <div className={styles.header__menu}>
+        <Link to="/">
+          <img src={logo} alt="logo" className={styles.header__menu_image} />
+        </Link>
+        <HeaderNavigation links={PRODUCT_LINKS} />
+        <div className={styles.header__menu_profileWrapper}>
+          <button
+            onClick={toggleDropdown}
+            className={styles.header__menu_profile}
+          >
+            <img src={profilePlaceholder} alt="profile" />
+          </button>
+          {isDropdownOpen && (
+            <DropdownMenu
+              links={dropdownMenu}
+              onClick={() => setIsDropdownOpen(false)}
+            />
+          )}
         </div>
       </div>
-
     </>
   );
 };

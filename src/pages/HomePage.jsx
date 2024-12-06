@@ -1,18 +1,11 @@
-import MainHeader from "../components/MainHeader";
-import List from "../components/List";
+import ShopList from '../components/ShopList';
 
 const HomePage = () => {
   return (
     <>
-      <header>
-        <MainHeader/>
-      </header>
-      <main>
-        <List/>
-      </main>
+      <ShopList />
     </>
-
-  )
+  );
 };
 
 export default HomePage;

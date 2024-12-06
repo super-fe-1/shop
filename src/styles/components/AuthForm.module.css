@@ -1,0 +1,47 @@
+.authFormContainer {
+  @apply flex justify-center items-center min-h-screen bg-gray-100;
+}
+
+.authForm {
+  @apply w-full max-w-md bg-white shadow-md rounded-lg p-8 space-y-6;
+}
+
+.authFormTitle {
+  @apply text-xl font-bold text-center;
+}
+
+.authFormField {
+  @apply space-y-4;
+}
+
+.authFormRadioGroup {
+  @apply flex flex-col space-y-2;
+}
+
+.authFormRadioOptions {
+  @apply flex space-x-4;
+}
+
+.authFormRadioOption {
+  @apply flex items-center space-x-2;
+}
+
+.authFormRadioInput {
+  @apply w-4 h-4;
+}
+
+.authFormButton {
+  @apply w-full bg-black text-white font-medium py-2 px-4 rounded-lg hover:bg-gray-800; /* 검정색 버튼으로 변경 */
+}
+
+.authFormFooter {
+  @apply mt-4 text-center;
+}
+
+.authFormFooterText {
+  @apply text-sm text-gray-500;
+}
+
+.authFormFooterLink {
+  @apply text-black hover:underline;
+}

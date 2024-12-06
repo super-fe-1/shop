@@ -1,0 +1,11 @@
+.alert__container {
+  @apply fixed z-50 transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2;
+  @apply bg-white rounded-lg shadow-lg;
+  @apply w-1/3 px-4 py-8 min-w-80 h-fit;
+  @apply flex flex-col;
+}
+
+.alert__close {
+  @apply text-2xl;
+  @apply absolute cursor-pointer top-2 right-2;
+}

@@ -1,0 +1,35 @@
+.cart__container {
+  @apply max-w-4xl mx-auto p-5 bg-indigo-900 text-white
+}
+
+.cart__title {
+  @apply font-bold mb-4
+}
+
+.cart__items {
+  @apply flex flex-col gap-4
+}
+
+.cart__item {
+  @apply flex justify-between items-center border-b border-gray-300 py-2
+}
+
+.cart__controls button {
+  @apply font-semibold
+}
+
+.cart__summary {
+  @apply mt-5 text-right
+}
+
+.cart__costs {
+  @apply flex justify-between
+}
+
+.cart__hr{
+  @apply my-2
+}
+.cart__total {
+  @apply flex justify-between font-bold text-lg
+}
+

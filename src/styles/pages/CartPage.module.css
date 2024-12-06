@@ -1,0 +1,48 @@
+.cart__header {
+  @apply flex items-center gap-4 mb-4;
+  @apply text-sm font-medium;
+}
+
+.cart {
+  @apply w-4/5 py-12 mx-auto md:w-2/3;
+}
+
+.item {
+  @apply mb-4;
+  @apply flex items-start gap-4;
+}
+
+.item__info {
+  @apply w-full h-full;
+  @apply flex items-start gap-2;
+}
+
+.item__info_image {
+  @apply w-24 h-24 border rounded md:w-40 md:h-40;
+}
+
+.item__info_desc {
+  @apply flex flex-col gap-1 text-sm md:text-base;
+}
+
+.item__desc_option {
+  @apply flex gap-1;
+}
+
+.option {
+  @apply pr-1 text-sm font-light border-r text-text-secondary;
+}
+
+.option:last-child {
+  @apply border-r-0;
+}
+
+.item__desc_price {
+  @apply font-medium;
+}
+
+.cart__button {
+  @apply inline-block w-full px-4 py-2 transition-all rounded-lg shadow bg-accent;
+  @apply text-center text-white;
+  @apply hover:bg-accent-hover;
+}
