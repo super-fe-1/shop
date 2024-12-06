@@ -1,11 +1,11 @@
 import { useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { __signup, __login } from '../redux/modules/user';
 import FormInput from './FormInput';
-import cleanPhoneNumber from '../utils/cleanPhoneNumber';
 
 const AuthForm = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const pathname = location.pathname;
@@ -61,7 +61,9 @@ const AuthForm = () => {
     if (pathname === '/signup') {
       dispatch(__signup(formValues));
     } else if (pathname === '/login') {
-      dispatch(__login(formValues));
+      dispatch(__login(formValues)).then((res) => {
+        navigate('/');
+      });
     }
   };
 

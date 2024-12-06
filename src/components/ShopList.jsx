@@ -6,6 +6,18 @@ import {useEffect, useState} from "react";
 
 const ShopList = () => {
   const [items, setItems] = useState([]);
+  const [cartData, setCartData] = useState([]);
+
+  
+
+  useEffect(() => {
+    const fetchCartData = async () => {
+      const response = await axios.get("http://localhost:3001/cart");
+    //const response = awati axios.get(`/api/payment`);
+      setCartData(response.data);
+    }
+    fetchCartData();
+  }, []);
 
   useEffect(() => {
     const getShopList = async () => {
@@ -47,7 +59,15 @@ const ShopList = () => {
           </div>
         </li>))}
     </ul>
+    <p className={styles.payload}>
+        <Link
+          to={{
+            pathname: "/products/order",
+            state: { cartData },
+          }}
+        >
+          결제하기
+        </Link>
+      </p>
   </>);
-};
 
-export default ShopList;

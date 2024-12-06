@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "../styles/components/PersonalInformation.module.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import axios from "../axios/axios";
 
 const PersonalInformation = () => {
   const [formData, setFormData] = useState({
@@ -21,9 +22,17 @@ const PersonalInformation = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Payment successful!");
+
+    try {
+      const response = await axios.post("/payments", formData);
+      // console.log("결제 정보 저장 성공:", response.data);
+      alert("결제가 완료되었습니다!");
+    } catch (error) {
+      // console.error("결제 정보 저장 실패:", error);
+      alert("결제 중 문제가 발생했습니다. 다시 시도해주세요.");
+    }
   };
 
   return (
@@ -34,7 +43,7 @@ const PersonalInformation = () => {
           <label>이메일</label>
           <input
             type="text"
-            name="name"
+            name="emailAddress"
             value={formData.emailAddress}
             onChange={handleChange}
             required
@@ -87,10 +96,11 @@ const PersonalInformation = () => {
         <div className={styles.information__address}>
           <label>우편 번호</label>
           <input
-              type="text"
-              name="postalCode"
-              required
-              onChange={handleChange}
+            type="text"
+            name="postalCode"
+            value={formData.postalCode}
+            onChange={handleChange}
+            required
           />
         </div>
         <div>

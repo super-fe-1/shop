@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { PRODUCT_LINKS } from '../constants/navigationItems';
 import styles from '../styles/components/MainHeader.module.css';
@@ -8,27 +9,36 @@ import logo from '../assets/images/logo.png';
 import profilePlaceholder from '../assets/images/placeholder-profile.jpeg';
 
 const MainHeader = () => {
-  const isLoggedIn = true;
+  const isLog = useSelector((state) => state.user.isLog);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [profileLink, setProfileLink] = useState([
-    {
-      link: '/profile',
-      name: '마이페이지',
-    },
-  ]);
-  // TODO: 로그인 기능 완료 후 조건부로 state 관리
-  // { link: '/login', name: '로그인하기' }
+  const [dropdownMenu, setDropdownMenu] = useState([]);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  useEffect(() => {
+    const links = isLog
+      ? [
+          { link: '/profile', name: '마이페이지' },
+          { link: '/products/cart', name: '장바구니' },
+          { link: '/products/order', name: '주문하기' },
+          { link: '/products/upload', name: '상품판매' },
+        ]
+      : [{ link: '/login', name: '로그인하기' }];
+    setDropdownMenu(links);
+  }, [isLog]);
+
   return (
     <>
       <div className={styles.header__auth}>
-        <Link to="/login">Login</Link>
-        <Link to="/signup">Sign Up</Link>
+        {!isLog && (
+          <>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
+          </>
+        )}
       </div>
       <div className={styles.header__menu}>
         <Link to="/">
@@ -40,9 +50,14 @@ const MainHeader = () => {
             onClick={toggleDropdown}
             className={styles.header__menu_profile}
           >
-            <img src={profilePlaceholder} alt="profile" className={''} />
+            <img src={profilePlaceholder} alt="profile" />
           </button>
-          {isDropdownOpen ? <DropdownMenu links={profileLink} /> : null}
+          {isDropdownOpen && (
+            <DropdownMenu
+              links={dropdownMenu}
+              onClick={() => setIsDropdownOpen(false)}
+            />
+          )}
         </div>
       </div>
     </>

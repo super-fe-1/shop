@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import PrivateRoute from './PrivateRoute';
 // layout
 import MainLayout from '../components/layouts/MainLayout';
 // pages
@@ -6,29 +8,35 @@ import HomePage from '../pages/HomePage';
 import AuthPage from '../pages/AuthPage';
 import DetailPage from '../pages/DetailPage';
 import ProfilePage from '../pages/ProfilePage';
-import RegistrationPage from '../pages/RegistrationPage';
-import NotFoundPage from '../pages/NotFoundPage';
+import ProductUploadPage from '../pages/ProductUploadPage';
+import CartPage from '../pages/CartPage';
 import OrderPage from '../pages/OrderPage';
+import NotFoundPage from '../pages/NotFoundPage';
 
-const AppRouter = () => {
+const Router = () => {
+  const isLog = useSelector((state) => state.user.isLog);
+
   return (
     <BrowserRouter
       future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
     >
       <Routes>
         <Route element={<MainLayout />}>
+          <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<AuthPage />} />
           <Route path="/signup" element={<AuthPage />} />
-          <Route path="/" element={<HomePage />} />
           <Route path="/detail/:id" element={<DetailPage />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/registration" element={<RegistrationPage />} />
+          <Route element={<PrivateRoute isLog={isLog} />}>
+            <Route path="/products/upload" element={<ProductUploadPage />} />
+            <Route path="/products/cart" element={<CartPage />} />
+            <Route path="/products/order" element={<OrderPage />} />
+          </Route>
           <Route path="*" element={<NotFoundPage />} />
-          <Route path="/order" element={<OrderPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
   );
 };
 
-export default AppRouter;
+export default Router;
