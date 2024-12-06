@@ -9,7 +9,7 @@ const CartPage = () => {
 
   const getCart = async () => {
     await axios
-      .get(`/products`)
+      .get(`/cart`)
       .then((res) => {
         setCart(res.data);
         setSelectedProducts(res.data.map((item) => item.productId));

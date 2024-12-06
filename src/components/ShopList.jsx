@@ -49,7 +49,7 @@ const ShopList = () => {
             <img src={item.productImageUrl} alt={item.title} />
             <div className={styles.list__buttons}>
               <p className={styles.list__link}>
-                <Link to={`/detail/${item.productId}`}>{item.title}</Link>
+                <Link to={`/detail/${item.id}`}>{item.title}</Link>
               </p>
               <p>{item.price}</p>
             </div>

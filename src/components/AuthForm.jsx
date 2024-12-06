@@ -80,7 +80,7 @@ const AuthForm = () => {
       });
     } else if (pathname === '/login') {
       dispatch(__login(formValues)).then((res) => {
-        navigate('/');
+        navigate('/', { replace: true });
       });
     }
   };
