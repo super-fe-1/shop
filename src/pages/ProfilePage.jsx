@@ -25,8 +25,7 @@ const ProfilePage = () => {
 
   const getProfile = async () => {
     await axios
-      // .get(`/mypage/info`)
-      .get(`/profile`)
+      .get(`/users/1`)
       .then((res) => {
         setProfile(res.data);
       })
