@@ -74,10 +74,10 @@ const CartPage = () => {
                   <span>{item.title}</span>
                   <div className={styles.item__desc_option}>
                     <span className={styles.option}>
-                      {item.selectedColor.toUpperCase()}
+                      {item.selectedColor?.toUpperCase()}
                     </span>
                     <span className={styles.option}>
-                      {item.selectedSize.toUpperCase()}
+                      {item.selectedSize?.toUpperCase()}
                     </span>
                     <span className={styles.option}>수량: {item.quantity}</span>
                   </div>

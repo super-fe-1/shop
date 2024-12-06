@@ -7,7 +7,7 @@ const HeaderNavigation = ({ links }) => {
       {Object.values(links).map((link, i) => {
         return (
           <li key={i}>
-            <Link to={link.link}>{link.name.toUpperCase()}</Link>
+            <Link to={link.link}>{link.name?.toUpperCase()}</Link>
           </li>
         );
       })}
