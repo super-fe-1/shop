@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { __signup, __login } from '../redux/modules/user';
 import FormInput from './FormInput';
+import cleanPhoneNumber from '../utils/cleanPhoneNumber';
 
 const AuthForm = () => {
   const location = useLocation();
@@ -31,7 +32,22 @@ const AuthForm = () => {
           },
           { id: 'tel', label: '전화번호', type: 'tel', required: true },
           { id: 'address', label: '주소', type: 'text', required: true },
-          { id: 'profileImg', label: '프로필', type: 'file', required: false },
+          {
+            id: 'profileImg',
+            label: '프로필 이미지',
+            type: 'file',
+            required: false,
+          },
+          {
+            id: 'gender',
+            label: '성별',
+            type: 'radio',
+            options: [
+              { value: 'M', label: '남성' },
+              { value: 'F', label: '여성' },
+            ],
+            required: true,
+          },
         ];
 
   const authValidators = {
@@ -61,29 +77,68 @@ const AuthForm = () => {
     if (pathname === '/signup') {
       dispatch(__signup(formValues));
     } else if (pathname === '/login') {
-      dispatch(__login(formValues)).then((res) => {
-        navigate('/');
-      });
+      dispatch(__login(formValues));
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        {authFormFields.map((field) => (
-          <FormInput
-            key={field.id}
-            label={field.label}
-            fieldData={field}
-            regex={authValidators[field.id]?.regex}
-            helpText={authValidators[field.id]?.helpText}
-          />
-        ))}
-      </div>
-      <button type="submit">
-        {pathname === '/signup' ? '회원가입' : '로그인'}
-      </button>
-    </form>
+    <div className={styles.authFormContainer}>
+      <form onSubmit={handleSubmit} className={styles.authForm}>
+        <h2 className={styles.authFormTitle}>
+          {pathname === '/signup' ? '회원가입' : '로그인'}
+        </h2>
+        <div className={styles.authFormField}>
+          {authFormFields.map((field) =>
+            field.type === 'radio' ? (
+              <div key={field.id} className={styles.authFormRadioGroup}>
+                <label>{field.label}</label>
+                <div className={styles.authFormRadioOptions}>
+                  {field.options.map((option) => (
+                    <label
+                      key={option.value}
+                      className={styles.authFormRadioOption}
+                    >
+                      <input
+                        type="radio"
+                        className={styles.authFormRadioInput}
+                        name={field.id}
+                        value={option.value}
+                        required={field.required}
+                      />
+                      {option.label}
+                    </label>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <FormInput
+                key={field.id}
+                label={field.label}
+                fieldData={field}
+                regex={authValidators[field.id]?.regex}
+                helpText={authValidators[field.id]?.helpText}
+              />
+            )
+          )}
+        </div>
+        <button type="submit" className={styles.authFormButton}>
+          {pathname === '/signup' ? '회원가입' : '로그인'}
+        </button>
+        <div className={styles.authFormFooter}>
+          <p className={styles.authFormFooterText}>
+            {pathname === '/signup'
+              ? '이미 계정이 있으신가요?'
+              : '아직 계정이 없으신가요?'}{' '}
+            <a
+              href={pathname === '/signup' ? '/login' : '/signup'}
+              className={styles.authFormFooterLink}
+            >
+              {pathname === '/signup' ? '로그인' : '회원가입'}
+            </a>
+          </p>
+        </div>
+      </form>
+    </div>
   );
 };
 
