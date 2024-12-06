@@ -1,6 +1,7 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../axios/axios';
+import styles from '../styles/pages/ProductUploadPage.module.css';
 import FormInput from '../components/FormInput';
 import Alert from '../components/Alert';
 
@@ -68,9 +69,11 @@ const ProductUploadPage = () => {
         <button>등록</button>
       </form>
       <Alert isAlertShow={isAlertShow}>
-        <div>
-          <p>상품이 등록되었습니다!</p>
-          <button onClick={handleConfirm}>확인</button>
+        <div className={styles.alert}>
+          <p className={styles.alert__text}>상품이 등록되었습니다!</p>
+          <button onClick={handleConfirm} className={styles.alert__button}>
+            확인
+          </button>
         </div>
       </Alert>
     </>

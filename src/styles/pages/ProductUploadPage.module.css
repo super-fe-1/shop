@@ -1,0 +1,11 @@
+.alert {
+  @apply flex flex-col items-center gap-4;
+}
+
+.alert__text {
+  @apply text-lg;
+}
+
+.alert__button {
+  @apply m-2 px-4 text-sm font-semibold transition-all rounded-lg shadow text-success;
+}
