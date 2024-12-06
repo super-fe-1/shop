@@ -43,8 +43,6 @@ const CartPage = () => {
     getCart();
   }, []);
 
-  console.log(cart);
-
   return (
     <div className={styles.cart}>
       <div className={styles.cart__header}>
