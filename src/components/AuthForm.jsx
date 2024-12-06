@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { __signup, __login } from '../redux/modules/user';
+import styles from '../styles/components/AuthForm.module.css';
 import FormInput from './FormInput';
-import cleanPhoneNumber from '../utils/cleanPhoneNumber';
 
 const AuthForm = () => {
   const location = useLocation();
