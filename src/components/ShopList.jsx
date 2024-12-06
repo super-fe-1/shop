@@ -1,7 +1,30 @@
-import { Link } from "react-router-dom";
-import styles from "../styles/components/ShopList.module.css"
+import { Link } from 'react-router-dom';
+import styles from '../styles/components/ShopList.module.css';
+import axios from '../axios/axios';
+import { useEffect, useState } from 'react';
 
 const ShopList = () => {
+  const [items, setItems] = useState([]);
+  const [cartData, setCartData] = useState([]);
+
+  useEffect(() => {
+    const fetchCartData = async () => {
+      const response = await axios.get('http://localhost:3001/cart');
+      //const response = awati axios.get(`/api/payment`);
+      setCartData(response.data);
+    };
+    fetchCartData();
+  }, []);
+
+  useEffect(() => {
+    const getShopList = async () => {
+      const res = await axios.get(`/productDtoes`);
+      //const res = await axios.get(`api/products`);
+
+      setItems(res.data);
+    };
+    getShopList();
+  }, []);
 
   return (
     <>
@@ -21,23 +44,28 @@ const ShopList = () => {
         </ul>
       </div>
       <ul className={styles.list__items}>
-        {[1, 2, 3, 4, 5, 6].map((id) => (
-          //이미지 들어오면 구현 예정
-          <li key={id}>
-            <img src={`image${id}.jpg`} alt={`Image ${id}`} className="w-full h-auto" />
+        {items.map((item) => (
+          <li key={item.productId}>
+            <img src={item.productImageUrl} alt={`Image of ${item.title}`} />
             <div className={styles.list__buttons}>
-              <p
-                className={styles.list__link}
-              >
-                <Link to ="/detail/:id">이름 {id}</Link>
+              <p className={styles.list__link}>
+                <Link to={`/detail/${item.productId}`}>{item.title}</Link>
               </p>
-              <p>가격</p>
+              <p>{item.price}</p>
             </div>
           </li>
         ))}
       </ul>
+      <p className={styles.payload}>
+        <Link
+          to={{
+            pathname: '/products/order',
+            state: { cartData },
+          }}
+        >
+          결제하기
+        </Link>
+      </p>
     </>
   );
 };
-
-export default ShopList;
