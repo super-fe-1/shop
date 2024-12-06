@@ -75,9 +75,13 @@ const AuthForm = () => {
     });
 
     if (pathname === '/signup') {
-      dispatch(__signup(formValues));
+      dispatch(__signup(formValues)).then((res) => {
+        navigate('/login');
+      });
     } else if (pathname === '/login') {
-      dispatch(__login(formValues));
+      dispatch(__login(formValues)).then((res) => {
+        navigate('/');
+      });
     }
   };
 
