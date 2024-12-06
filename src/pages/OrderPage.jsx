@@ -1,9 +1,13 @@
 import Cart from "../components/Cart";
 import PersonalInformation from "../components/PersonalInformation";
 import styles from "../styles/pages/OrderPage.module.css"
+import {useLocation} from "react-router-dom";
 
 
 const OrderPage = () => {
+  const location = useLocation();
+  const cartData = location.state?.cartData || [];
+
   return (
     <>
       <div className={styles.container}>
@@ -11,7 +15,7 @@ const OrderPage = () => {
           <PersonalInformation/>
         </div>
         <div className={styles.cart}>
-          <Cart/>
+          <Cart cartData = {cartData}/>
         </div>
       </div>
     </>

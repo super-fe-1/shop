@@ -1,24 +1,13 @@
-import React, { useState } from "react";
 import styles from "../styles/components/Cart.module.css";
 
-const Cart = () => {
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: "product 1", price: 100, quantity: 1, option: {size: "m"} },
-    { id: 2, name: "product 2", price: 50, quantity: 2, option: {color: "red"} },
-  ]);
-
+//cartData가 불러와지지 않음
+const Cart = ({ cartData }) => {
   const updateQuantity = (id, increment) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id
-          ? { ...item, quantity: item.quantity + (increment ? 1 : -1) }
-          : item
-      )
-    );
+    console.log(`수량 변경: ${id}, 증가: ${increment}`);
   };
 
-  const subtotal = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+  const subtotal = cartData.reduce(
+    (sum, item) => sum + item.cartPrice * item.quantity,
     0
   );
 
@@ -26,16 +15,15 @@ const Cart = () => {
   const tax = subtotal * 0.1; // 세금 (10%)
   const total = subtotal + shippingFee + tax;
 
-  //이미지는 받으면 구현 예정
   return (
     <div className={styles.cart__container}>
       <h1 className={styles.cart__title}>결제 금액</h1>
       <div className={styles.cart__items}>
-        {cartItems.map((item) => (
-          <div key={item.id} className={styles.cart__item}>
+        {cartData.map((item) => (
+          <div key={item.title} className={styles.cart__item}>
             <div>
-              <p>{item.name}</p>
-              {Object.entries(item.option).map(
+              <p>{item.title}</p>
+              {Object.entries(item.sizeOption).map(
                 ([key, value]) => `${key}: ${value}`
               )}
             </div>
